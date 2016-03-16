@@ -1,0 +1,62 @@
+---
+title: "Beastin_script"
+author: "Vanessa Apkenas"
+date: "March 16, 2016"
+output: word_document
+---
+
+```{r}
+require(ape)
+
+setwd("~/Desktop/MacroEvoProject")
+
+my.files <- list.files()
+
+taxa.names <- character()
+
+for(i in 1:length(my.files)){
+	
+	print(paste("reading....", my.files[i]))
+	tmp <- read.nexus.data(my.files[i])
+	taxa.names <- c(taxa.names, names(tmp))
+	print("done")
+	
+}
+
+rm(i)
+rm(tmp)
+
+
+taxa.names <- unique(taxa.names)
+
+
+
+for(n in 1:length(my.files)) {
+
+	print(paste("reading....", my.files[n]))
+tmp <- read.nexus.data(my.files[n])
+
+missing <- setdiff(taxa.names, names(tmp))
+new.names <- c(names(tmp), missing)
+
+for(i in 1:length(missing)) {
+	
+	tmp[[length(tmp)+1]] <- rep("?", length(tmp[[1]]))
+	
+		
+	
+}
+
+names(tmp) <- new.names
+
+write.nexus.data(tmp, file = paste(my.files[n], "mod.nex", sep = "_"), interleaved = F)
+rm(tmp)
+print("done")
+
+
+}
+
+
+
+```
+

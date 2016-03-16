@@ -1,0 +1,178 @@
+---
+title: "TreePruning"
+author: "Vanessa Apkenas"
+date: "February 18, 2016"
+output: html_document
+---
+
+Pruning a tree from TreeAnnotator
+
+```{r}
+
+
+#load the phylogenetic tree manipulation package
+
+library(ape)
+
+
+#set your working directory to whatever folder
+
+setwd("~/Desktop/MacroEvoProject")
+
+
+#read in your tree
+
+#tree <- read.tree("AfroInsectiphilia.tre")
+#tree <- read.tree("Afroinsectiphilia_2_annotator")
+tree <- read.nexus("Afroinsectiphilia_2_annotator")
+
+tree <- write.tree(tree, file="tree.tre") #converting from a Nexus to a Newick file format
+
+tree <- read.tree("tree.tre") #read it in again now as the .tre file
+
+#make a list of the tips you don't want in the tree
+
+tips.to.drop <- c("Macroscelides_proboscideus_2", "'Microgale_cf._parvula'", "Petrodromus_tetradactylus_2", "Elephantulus_myurus_2", "Elephantulus_edwardii_2", "Elephantulus_rupestris_2", "Elephantulus_intufi_2", "Elephantulus_brachyrhynchus_2", "Elephantulus_brachyrhynchus_3", "Geogale_aurita_2", "Amblysomus_hottentotus_2", "Orycteropus_afer_2", "Procavia_capensis", "Loxodonta_africana")
+
+
+#get rid of those tips
+
+pruned_tree <- drop.tip(tree, tips.to.drop)
+
+
+#write new clean tree to a file
+
+write.tree(pruned_tree, file="Afroinsectiphilia2_pruned.tre") 
+
+
+
+
+```
+
+
+Now pruning the same tree of additional species that didn't have trait data for body mass to run in BAMM
+```{r}
+
+
+#load the phylogenetic tree manipulation package
+
+library(ape)
+
+
+#set your working directory to whatever folder
+
+setwd("~/Desktop/MacroEvoProject")
+
+
+#read in your tree
+
+#tree <- read.tree("AfroInsectiphilia.tre")
+#tree <- read.tree("Afroinsectiphilia_2_annotator")
+tree <- read.nexus("Afroinsectiphilia_2_annotator")
+
+tree <- write.tree(tree, file="tree_bodymass_BAMM.tre") #converting from a Nexus to a Newick file format
+
+tree <- read.tree("tree_bodymass_BAMM.tre") #read it in again now as the .tre file
+
+#make a list of the tips you don't want in the tree
+
+tips.to.drop <- c("Macroscelides_proboscideus_2", "'Microgale_cf._parvula'", "Petrodromus_tetradactylus_2", "Elephantulus_myurus_2", "Elephantulus_edwardii_2", "Elephantulus_rupestris_2", "Elephantulus_intufi_2", "Elephantulus_brachyrhynchus_2", "Elephantulus_brachyrhynchus_3", "Geogale_aurita_2", "Amblysomus_hottentotus_2", "Orycteropus_afer_2", "Procavia_capensis", "Loxodonta_africana", "Oryzorictes_talpoides", "Cryptochloris_wintoni", "Amblysomus_marleyi", "Huetia_leucorhinus")
+
+
+#get rid of those tips
+
+pruned_tree <- drop.tip(tree, tips.to.drop)
+
+
+#write new clean tree to a file
+
+write.tree(pruned_tree, file="Afroinsectiphilia2_pruned_bodymass_BAMM.tre") 
+
+
+
+
+```
+
+Now pruning the tree to only have sengis for biogeography homework:
+```{r}
+
+#load the phylogenetic tree manipulation package
+
+library(ape)
+
+
+#set your working directory to whatever folder
+
+setwd("~/Desktop/MacroEvo/Lab7/Sengis")
+
+
+#read in your tree
+
+#tree <- read.tree("AfroInsectiphilia.tre")
+#tree <- read.tree("Afroinsectiphilia_2_annotator")
+tree <- read.nexus("Afroinsectiphilia_2_annotator")
+
+tree <- write.tree(tree, file="tree_biogeo.tre") #converting from a Nexus to a Newick file format
+
+tree <- read.tree("tree_biogeo.tre") #read it in again now as the .tre file
+
+#make a list of the tips you don't want in the tree
+
+tips.to.drop <- c("Macroscelides_proboscideus_2", "'Microgale_cf._parvula'", "Petrodromus_tetradactylus_2", "Elephantulus_myurus_2", "Elephantulus_edwardii_2", "Elephantulus_rupestris_2", "Elephantulus_intufi_2", "Elephantulus_brachyrhynchus_2", "Elephantulus_brachyrhynchus_3", "Geogale_aurita_2", "Amblysomus_hottentotus_2", "Orycteropus_afer_2", "Procavia_capensis", "Loxodonta_africana", "Oryzorictes_talpoides", "Cryptochloris_wintoni", "Amblysomus_marleyi", "Huetia_leucorhinus", "Orycteropus_afer", "Micropotamogale_lamottei", "Potamogale_velox", "Geogale_aurita", "Microgale_cf._parvula", "Limnogale_mergulus", "Microgale_brevicaudata", "Microgale_talazaci", "Oryzorictes_hova", "Oryzorictes_talpoides", "Setifer_setosus", "Echinops_telfairi", "Tenrec_ecaudatus", "Hemicentetes_semispinosus", "Chrysochloris_asiatica", "Cryptochloris_wintoni", "Chrysochloris_stuhlmanni", "Eremitalpa_granti", "Chlorotalpa_duthieae", "Chlorotalpa_sclateri", "Carpitalpa_arendsi", "Neamblysomus_julianae", "Neamblysomus_gunningi", "Amblysomus_hottentotus", "Amblysomus_marleyi", "Amblysomus_septentrionalis", "Amblysomus_corriae", "Amblysomus_robustus", "Chrysospalax_villosus", "Chrysospalax_trevelyani", "Calcochloris_obtusirostris", "Huetia_leucorhinus")
+
+
+#get rid of those tips
+
+pruned_tree <- drop.tip(tree, tips.to.drop)
+
+
+#write new clean tree to a file
+
+write.tree(pruned_tree, file="Afroinsectiphilia2_pruned_biogeo.tre") 
+```
+
+
+
+Now pruning tree to only have golden moles for biogeography analysis:
+
+```{r}
+
+#load the phylogenetic tree manipulation package
+
+library(ape)
+
+
+#set your working directory to whatever folder
+
+setwd("~/Desktop/MacroEvoProject/BioGeoGoldenMoles")
+
+
+#read in your tree
+
+#tree <- read.tree("AfroInsectiphilia.tre")
+#tree <- read.tree("Afroinsectiphilia_2_annotator")
+tree <- read.nexus("Afroinsectiphilia_2_annotator")
+
+tree <- write.tree(tree, file="tree_biogeo.tre") #converting from a Nexus to a Newick file format
+
+tree <- read.tree("tree_biogeo.tre") #read it in again now as the .tre file
+
+#make a list of the tips you don't want in the tree
+
+tips.to.drop <- c("Macroscelides_proboscideus_2", "'Microgale_cf._parvula'", "Petrodromus_tetradactylus_2", "Elephantulus_myurus_2", "Elephantulus_edwardii_2", "Elephantulus_rupestris_2", "Elephantulus_intufi_2", "Elephantulus_brachyrhynchus_2", "Elephantulus_brachyrhynchus_3", "Geogale_aurita_2", "Amblysomus_hottentotus_2", "Orycteropus_afer_2", "Procavia_capensis", "Loxodonta_africana", "Oryzorictes_talpoides", "Orycteropus_afer", "Micropotamogale_lamottei", "Potamogale_velox", "Geogale_aurita", "Microgale_cf._parvula", "Limnogale_mergulus", "Microgale_brevicaudata", "Microgale_talazaci", "Oryzorictes_hova", "Oryzorictes_talpoides", "Setifer_setosus", "Echinops_telfairi", "Tenrec_ecaudatus", "Hemicentetes_semispinosus", "Elephantulus_brachyrhynchus", "Elephantulus_edwardii", "Elephantulus_fuscipes", "Elephantulus_fuscus", "Elephantulus_intufi", "Elephantulus_myurus", "Elephantulus_revoili", "Elephantulus_rozeti", "Elephantulus_rufescens", "Elephantulus_rupestris", "Macroscelides_proboscideus", "Petrodromus_tetradactylus", "Rhynchocyon_chrysopygus", "Rhynchocyon_cirnei", "Rhynchocyon_petersi")
+
+
+#get rid of those tips
+
+pruned_tree <- drop.tip(tree, tips.to.drop)
+
+
+#write new clean tree to a file
+
+write.tree(pruned_tree, file="Afroinsectiphilia2_pruned_biogeo_goldenmoles.tre")
+
+
+
+
+```
+
