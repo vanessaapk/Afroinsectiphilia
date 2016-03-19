@@ -10,7 +10,7 @@ DataS3 = tree file
 
 DataS4 = log transformed body mass text file for body mass diversification analysis in BAMM
 
-DataS5 = 
+DataS5 = pruned tree file for body mass diversification analysis in BAMM
 
 DataS6 = trait control file for body mass diversification analysis in BAMM
 
